@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+	var x; 
+	x = { 
+		ISBM: 1234,
+		TITULO: "Bom Livro, para pessoas Ruins",
+		AUTORES: ["Zé do Bar","Rodrigo Confuso"]
+	     }
+
+
+
+	      class ABC{
+constructor(){
+	this.a = 1;
+	this.b = "x";
+             }
+
+
+  toString(){
+return 'Resultado é'+(this.a)+ '-' +(this.b)
+            }
+	          	}
+
+z = new ABC();
+alert (z.a);
+alert (z.toString());
+
+
+
+
+class  Aluno{
+	constructor(m,n,c) {
+		this.matricula = m;
+		this.nome = n;
+		this.cpf = c;
+	}
+
+	escreva(){
+		return 'Matricula: '+(this.matricula)+ ' Nome: '+(this.nome)+' Cpf: '+(this.cpf)
+	}
+
+}
+k = new Aluno(111,"Joao",52848320869);
+f = new Aluno(420,"Borracha",42069666624);
+
+alert (k.escreva());
+alert (f.escreva());
+
+
+
+ trecogrande = [54,28,13,18,398,2,476];
+
+ var tamanho = trecogrande.length;
+ var maior = trecogrande[0];
+ var menor = trecogrande[0];
+
+for (var i = 0 ; i <= tamanho; i++) {
+	if (maior < trecogrande[i]){
+  maior = trecogrande[i];
+	    						}
+
+    if (menor > trecogrande[i]){
+  menor = trecogrande[i];
+
+							   }
+
+									}
+alert (maior);
+alert (menor);
+</script>
+</body>
+</html>
