@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<style type="text/css">
+	body{
+		background-color: #0F044C;
+	}
+.corpo{
+    padding: 20px;
+}
+header{
+	width: 100%;
+	background-color: #141E61;
+	color: #EEEEEE;
+}
+footer{
+	width: 100%;
+}
+.formulario{
+	 width: 50%;
+    float: left;
+    color: #EEEEEE;
+    padding: 20px;
+    border: 1px solid #787A91;
+    background-color: #141E61;
+}
+#dados{
+	 width: 50%;
+    float: left;
+    padding: 20px;
+    color: #EEEEEE;
+    background-color: #141E61;
+    border: 1px solid #787A91;
+
+}
+#dados button{
+
+	margin-right: 35px;
+}
+#form1 label{
+	font-size: 24px;
+}
+</style>
+
+
+	<title>Bruno Bernardo - Marcos Roberto</title>
+</head>
+<body>
+
+<header>
+	<center>
+   <h1> BrunexFilmes</h1>
+
+
+<h3>Sistema de Cadastro de Filmes</h3>
+</center>
+</header>
+<div class="corpo">
+<div class="formulario">
+	 <form  id="form1">
+	 	<h1>Insira os Dados</h1>
+		<label>Nome<p><input  class="form-control " placeholder="Insira o Nome" type="text" id="nome" required maxlength="150"  /></p></label><br>
+
+		 <label>Duração <p><input  class="form-control" placeholder="Insira a Duração" type="number" id="duracao" required /></p> </label><br>
+
+        <label>Data de Lançamento<p><input type="date" class="form-control form-control-lg"  required id="datalan" ></p></label><br>
+
+		<label>Preço do Aluguel<p><input  class="form-control" type="number" placeholder="Insira o Preço" id="preco" required /></p></label><br>
+
+		<p><input type="submit" class="btn btn-success" value="Adicionar" /></p>
+        
+         </form>
+     <hr>
+		 <button class= "btn btn-primary" onclick="Atualizar2(ajuda2)">Atualizar</button> 
+          
+          	 <button class="btn btn-danger" onclick="Limpar()">Limpar Campos</button> 
+
+</div>
+	<div id="dados"></div>
+
+
+	</body>
+</html>
+<script type="text/javascript">
+
+
+
+
+var datinha = datalan;
+    class Filme{
+    	constructor(n,d,dt,pr){
+    		this.nome = n;
+    		this.duracao = Number(d);
+    		this.datalan = String(dt);
+    		this.preco = Number(pr);
+    	}
+    }
+    // vetor para armazenar os Filmes cadastrados
+	var vetorFilmes = [];
+
+	function apresentaDados () {
+		// linmpar div para inserir parágrafos novamente
+		while ( dados.hasChildNodes() ) {
+			dados.removeChild(dados.firstChild);
+		}
+		// f assume um objeto do tipo Filme do vetor a cada iteração
+
+
+        var id=-1;
+        var ida=-1;
+        var decoracao = document.createElement('h1');
+           decoracao.innerHTML = 'Lista de Filmes';
+           dados.appendChild(decoracao);
+    	for(let f of vetorFilmes) {
+
+    		var nomef = `<p>Nome do filme: ${f.nome}`;
+    		var duracaof = `<p>Duração: ${f.duracao} Minutos`;
+    		var dataf = `<p>Data de Lançamento : ${f.datalan}`;
+    		var precof = `<p>Preço de Aluguel R$: ${f.preco}`;
+    	
+    		var id = id+1; //id parra funcao de apagar
+            var ida= ida+1; //id para funçao de atualizar
+    	
+               
+
+
+            
+               
+           var divex = document.createElement('div');
+            
+ var borracha = document.createElement('button');
+            borracha.setAttribute("class", "apagador btn btn-danger");
+            borracha.setAttribute("id", id);
+            borracha.setAttribute("onclick", "Apagar("+id+")");
+            borracha.innerHTML = 'Apagar';
+            
+            var atualizar = document.createElement('button');
+            atualizar.setAttribute("class", "atualizador btn btn-warning");
+            atualizar.setAttribute("id", id);
+            atualizar.setAttribute("onclick", "Atualizar1("+ida+")");
+            atualizar.innerHTML = 'Arrumar';
+
+            var hrbolado = document.createElement('hr');
+
+
+            divex.setAttribute("class", "Exibir" );
+
+       
+           divex.innerHTML= textContent=nomef;
+     
+                         divex.innerHTML+= textContent=dataf;
+          
+                         divex.innerHTML+= textContent=duracaof;
+                  
+                         divex.innerHTML+= textContent=precof;
+
+            
+                    dados.appendChild(divex); 
+            
+    	   
+    		dados.appendChild(borracha);
+    		dados.appendChild(atualizar);
+    		dados.appendChild(hrbolado);
+    	}
+    }
+
+	form1.onsubmit = function(e) { // parâmetro e refere-se ao evento
+		// Cancelar o submit
+        e.preventDefault();
+		// Criar objeto Filmes com os dados do formulario
+		var f = new Filme(nome.value,duracao.value,datalan.value,preco.value);
+		vetorFilmes.push(f);
+		console.log(vetorFilmes);
+	    // JSON.stringify converte objetos JSON para string
+	    // Em localStorage só é possível armazenar strings
+		localStorage.setItem("Filmes",
+			JSON.stringify(vetorFilmes) );
+		apresentaDados();
+	}
+
+	document.body.onload = function(){
+		// Pegar o vetor de objetos Filme do localStorage e coloca-lo bo vetor
+		var FilmesString = localStorage.getItem("Filmes");
+		// parsew converte string para vetor, inverso de stringify
+		if (FilmesString != null) {
+			vetorFilmes = JSON.parse(FilmesString);
+			apresentaDados();
+		}
+	}
+
+
+
+
+
+
+
+   function Apagar(id){
+
+   var ajuda = id;
+   vetorFilmes.splice(ajuda, 1);
+   localStorage.setItem('Filmes',JSON.stringify(vetorFilmes));
+   apresentaDados();
+
+  }
+
+ function Atualizar1(ida) {
+
+ var ajuda2 = ida;
+ var nomenovo = vetorFilmes[ida].nome;
+ var duracaonovo = vetorFilmes[ida].duracao;
+ var datanovo = vetorFilmes[ida].datalan;
+ var preconovo = vetorFilmes[ida].preco;
+
+console.log(nomenovo);
+ console.log(duracaonovo);
+ console.log(datanovo);
+ console.log(preconovo);
+document.getElementById("nome").value = nomenovo;
+document.getElementById("duracao").value = duracaonovo;
+document.getElementById("datalan").value = datanovo;
+document.getElementById("preco").value = preconovo;
+ }
+
+ var ajuda2 = ida;
+function Atualizar2(ida){
+
+   vetorFilmes.splice(ajuda2, 1);
+   localStorage.setItem('Filmes',JSON.stringify(vetorFilmes));
+  		// Criar objeto Filmes com os dados do formulario
+		var f = new Filme(nome.value,duracao.value,datalan.value,preco.value);
+		vetorFilmes.push(f);
+		console.log(vetorFilmes);
+	 
+		localStorage.setItem("Filmes",
+			JSON.stringify(vetorFilmes) );
+		apresentaDados();
+	}
+
+	document.body.onload = function(){
+		
+		var FilmesString = localStorage.getItem("Filmes");
+		// parsew converte string para vetor, inverso de stringify
+		if (FilmesString != null) {
+			vetorFilmes = JSON.parse(FilmesString);
+			apresentaDados();
+		}
+	
+
+}
+function Limpar(){
+document.getElementById("nome").value = "";
+document.getElementById("duracao").value = "";
+document.getElementById("datalan").value = "";
+document.getElementById("preco").value = "";
+}
+</script>
